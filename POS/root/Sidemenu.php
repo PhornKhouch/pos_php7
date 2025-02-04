@@ -19,11 +19,11 @@
                     <i class="fa fa-cog" aria-hidden="true" style="margin-right: 10px;"></i>Setting</a>
                 <ul class="collapse list-unstyled" id="homeSubmenu" style="margin-left: 20px;">
                     <li>
-                        <a href="../view/settings/index.php" target="content">General Settings</a>
+                        <a href="../view//settings/index.php" target="content">General Settings</a>
                     </li>
-                    <li>
-                        <a href="../view/user/index.php" target="content">User Management</a>
-                    </li>
+                    <!-- <li>
+                        <a href="../view/Menu/index.php" target="content">Menu</a>
+                    </li> -->
                 </ul>
             </li>
 
@@ -60,14 +60,14 @@
 
             <!-- Report -->
             <li class="active">
-                <a href="#Report" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" style="font-family: 'Bayon';">
-                <i class="fa fa-book" aria-hidden="true" style="margin-right: 10px;"></i> របាយការណ៏</a>
+                <a href="#Report" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                <i class="fa fa-book" aria-hidden="true" style="margin-right: 10px;"></i> Report</a>
                 <ul class="collapse list-unstyled" id="Report" style="margin-left: 20px;">
                     <li>
                         <a href="../view/reportsale/sale_details.php" target="content">Sale Product</a>
                     </li>
                     <li>
-                        <a href="../view/reportsale/stock_details.php" target="content">Stock Product</a>
+                        <a href="../view/reportstock/stock_report.php" target="content">Stock Product</a>
                     </li>
                 </ul>
             </li>

@@ -104,6 +104,22 @@ session_start();
                         <input style="margin-left: 15px;" type="checkbox" name="isactive" class="form-check-input"> 
                     </div>
                     <div class="col-xl-6">
+                    <label for="">Telegram Alert</label>
+                        <select name="unit" id="" class="form-select">
+                            <?php
+                                $tele="SELECT * FROM telegram";
+                                $result = $con->query($tele);
+                               
+                                while($row = $result->fetch_assoc()) {
+                                    ?>
+                                    <option value="<?php echo $row['chatid']; ?>"><?php echo $row['chatid']; ?></option>
+                                    <?php
+                                }
+                               
+                            ?>
+                        </select>
+                    </div>
+                    <div class="col-xl-6">
                         <label for="">photo</label>
                         <input type="file" name="photo" id="fileupload" class="form-control">
                     </div>
@@ -123,6 +139,7 @@ session_start();
                             ?>
                         </select>
                     </div>
+
                     <div class="col-xl-6 mt-5">
                         <img src="../../Upload/brand/camera.jpg" alt="" id="imgPreview" width="200px" height="120px" style="object-fit: contain;">
                     </div>

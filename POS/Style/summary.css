@@ -1,0 +1,103 @@
+
+.summary-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    height: 100%;
+    padding: 1.8rem;
+    position: relative;
+    overflow: hidden;
+    border: none;
+}
+
+.summary-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.2));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.summary-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.summary-card:hover::before {
+    opacity: 1;
+}
+
+.card-subtitle {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.8rem;
+}
+
+.card-value {
+    color: white;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.summary-icon {
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 3rem;
+    opacity: 0.2;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.summary-card:hover .summary-icon {
+    transform: translateY(-50%) scale(1.1);
+    opacity: 0.3;
+}
+
+.products-card {
+    background: linear-gradient(135deg, #4158D0, #C850C0);
+}
+
+.quantity-card {
+    background: linear-gradient(135deg, #43e97b, #38f9d7);
+}
+
+.value-card {
+    background: linear-gradient(135deg, #fa709a, #fee140);
+}
+
+.card-header {
+    background: linear-gradient(to right, #f8f9fa, #e9ecef);
+    border-bottom: none;
+    padding: 1.2rem 1.5rem;
+}
+
+.card-header h5 {
+    color: #2c3e50;
+    font-weight: 600;
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.mb-4 {
+    margin-bottom: 2rem !important;
+}
+
+.row {
+    margin: 0 -1rem;
+}
+
+.col-md-4 {
+    padding: 1rem;
+}
