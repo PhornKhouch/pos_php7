@@ -9,7 +9,8 @@ session_start();
 
 <body>
 <?php
-    if (isset($_SESSION['msg']) != null) {
+    if (isset($_SESSION['status']) && isset($_SESSION['message'])) {
+        $icon = $_SESSION['status'] === 'success' ? 'success' : 'error';
     ?>
         <script>
             const Toast = Swal.mixin({
@@ -23,13 +24,15 @@ session_start();
                     toast.onmouseleave = Swal.resumeTimer;
                 }
             });
+
             Toast.fire({
-                icon: "success",
-                title: "<?php echo $_SESSION['msg']; ?>"
+                icon: '<?php echo $icon; ?>',
+                title: '<?php echo $_SESSION['message']; ?>'
             });
         </script>
     <?php
-        unset($_SESSION['msg']);
+        unset($_SESSION['status']);
+        unset($_SESSION['message']);
     }
     ?>
 

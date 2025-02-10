@@ -55,9 +55,7 @@ include("root/header.php");
         <div class='box'>
             <h1>POS-Club Code</h1>
         </div>
-        <div class="login">
-           <a href="view/Login/confirm_logout.php" target="content" class="btn btn-info">Logout</a>
-        </div>
+        
     </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

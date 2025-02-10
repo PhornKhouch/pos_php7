@@ -64,8 +64,10 @@ try {
         throw new Exception("Prepare failed for detail: " . $con->error);
     }
 
+    $ID;
     foreach ($data['items'] as $item) {
         $itemTotal = $item['price'] * $item['quantity'];
+        $ID= $item['id'];
         if (!$detailStmt->bind_param("iiddd", 
             $saleId,
             $item['id'],
@@ -100,6 +102,19 @@ try {
     $con->commit();
     //alert to Telegram
     //
+
+    $selectPRD= "SELECT * FROM prdmaster WHERE id = '$ID'";
+    $resultPRD = $con->query($selectPRD);
+    $rowPRD = $resultPRD->fetch_assoc();
+    $grpID=$rowPRD['telegram_group'];//ID group
+
+
+    $selectToken= "SELECT * FROM telegram where groupid = '$grpID'";
+    $resultToken = $con->query($selectToken);
+    $rowToken = $resultToken->fetch_assoc();
+    $token=$rowToken["token"];//token
+    
+
     $message = formatPaymentMessage(
         $data['saleDate'],
         $item['price'],
@@ -109,14 +124,12 @@ try {
         $data['invoice'],
         $item['quantity']
     );
-    sendTelegramMessage($message);
+    
+    if($rowToken["IsAlert"]==1){
+        sendTelegramMessage($message,$token,$grpID);
+    }
+   
 
-
-
-
-
-
-    //
     echo json_encode([
         'success' => true,
         'message' => 'Sale completed successfully',

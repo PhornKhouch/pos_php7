@@ -22,6 +22,12 @@ include '../../Config/conect.php';
                 <label for="status" class="form-label">Status</label>
                 <input type="text" class="form-control" id="status" name="status" required maxlength="6">
             </div>
+            <div class="col-6 mt-3">
+                <div class="form-check form-switch">
+                    <input type="checkbox" class="form-check-input" id="IsAlert" name="IsAlert" style="width: 3em; height: 1.5em; cursor: pointer;">
+                    <label class="form-check-label ms-2" for="IsAlert" style="font-size: 1.1em; cursor: pointer;margin-left: 30px;"> Is Alert</label>
+                </div>
+            </div>
         </div>
         <div class="row mt-3">
             <div class="col-6">
@@ -39,6 +45,7 @@ include '../../Config/conect.php';
                 <th>Chat ID</th>
                 <th>Group ID</th>
                 <th>Status</th>
+                <th>IsAlert</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -55,6 +62,7 @@ include '../../Config/conect.php';
                     <td><?php echo htmlspecialchars($row['chatid']); ?></td>
                     <td><?php echo htmlspecialchars($row['groupid']); ?></td>
                     <td><?php echo htmlspecialchars($row['status']); ?></td>
+                    <td><?php echo htmlspecialchars($row['IsAlert']); ?></td>
                     <td>
                         <button type="button" class="btn btn-primary btn-sm edit-btn" 
                                 data-bs-toggle="modal" 
@@ -63,7 +71,8 @@ include '../../Config/conect.php';
                                 data-token="<?php echo htmlspecialchars($row['token']); ?>"
                                 data-chatid="<?php echo htmlspecialchars($row['chatid']); ?>"
                                 data-groupid="<?php echo htmlspecialchars($row['groupid']); ?>"
-                                data-status="<?php echo htmlspecialchars($row['status']); ?>">
+                                data-status="<?php echo htmlspecialchars($row['status']); ?>"
+                                data-isalert="<?php echo htmlspecialchars($row['IsAlert']); ?>">
                             Edit
                         </button>
                         <a href="/PHP7/POS/action/settings/actiontelegram.php?id=<?php echo $row['id']; ?>&action=btndelete" class="btn btn-danger btn-sm">Delete</a>    
@@ -81,7 +90,7 @@ include '../../Config/conect.php';
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header border-0">
-                <h5 class="modal-title">Edit Subject</h5>
+                <h5 class="modal-title">Edit Telegram Settings</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <form action="/PHP7/POS/action/settings/actiontelegram.php" method="post">
@@ -107,6 +116,13 @@ include '../../Config/conect.php';
                         <label for="edit_status" class="form-label">Status</label>
                         <input type="text" class="form-control" id="edit_status" name="status" required maxlength="6">
                     </div>
+                    
+                    <div class="mb-3">
+                        <div class="form-check form-switch">
+                            <input type="checkbox" class="form-check-input" id="edit_IsAlert" name="IsAlert" style="width: 3em; height: 1.5em; cursor: pointer;">
+                            <label class="form-check-label ms-2" for="edit_IsAlert" style="font-size: 1.1em; cursor: pointer;margin-left: 30px;"> Is Alert</label>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer border-0">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -118,27 +134,31 @@ include '../../Config/conect.php';
 </div>
 
 <script>
-    // Handle edit button click for telegram settings
-    document.addEventListener('DOMContentLoaded', function() {
-        const editButtons = document.querySelectorAll('.edit-btn');
-        editButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                // Get data from button attributes
-                const id = this.getAttribute('data-id');
-                const token = this.getAttribute('data-token');
-                const chatid = this.getAttribute('data-chatid');
-                const groupid = this.getAttribute('data-groupid');
-                const status = this.getAttribute('data-status');
-
-                // Populate modal fields
-                document.getElementById('edit_id').value = id;
-                document.getElementById('edit_token').value = token;
-                document.getElementById('edit_chatid').value = chatid;
-                document.getElementById('edit_groupid').value = groupid;
-                document.getElementById('edit_status').value = status;
-            });
+document.addEventListener('DOMContentLoaded', function() {
+    // Get all elements with class edit-btn
+    var editButtons = document.getElementsByClassName('edit-btn');
+    
+    // Add click event listener to each edit button
+    Array.from(editButtons).forEach(function(button) {
+        button.addEventListener('click', function() {
+            // Get data from button attributes
+            var id = this.getAttribute('data-id');
+            var token = this.getAttribute('data-token');
+            var chatid = this.getAttribute('data-chatid');
+            var groupid = this.getAttribute('data-groupid');
+            var status = this.getAttribute('data-status');
+            var isAlert = this.getAttribute('data-isalert');
+            
+            // Set values in modal form
+            document.getElementById('edit_id').value = id;
+            document.getElementById('edit_token').value = token;
+            document.getElementById('edit_chatid').value = chatid;
+            document.getElementById('edit_groupid').value = groupid;
+            document.getElementById('edit_status').value = status;
+            document.getElementById('edit_IsAlert').checked = isAlert == '1';
         });
     });
+});
 </script>
 
 <?php

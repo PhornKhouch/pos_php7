@@ -12,13 +12,14 @@
         $unitcose = $_POST['cost'];
         $exdate = $_POST['expdate'];
         $Active= $_POST['isactive'];
+
         if($Active=='on'){
             $Active='A';
         }else{
             $Active='I';
         }
         $unit= $_POST['unit'];
-        
+        $tele= $_POST['TelegramID'];
         //upload photo
         $target_dir = "../../Upload/brand/";
         $filename=$_FILES['photo']['name'];
@@ -30,7 +31,6 @@
         $sql = "
         UPDATE `prdmaster` SET 
         `prdname` = '$description',
-        photo = '$filename', 
         `prdcategroy` = '$category', 
         `prdbrand` = '$brand', 
         `stockdate` = '$stdate', 
@@ -38,9 +38,13 @@
         `stockqty` = '$qty', 
         `unitcose` = '$unitcose', 
         `isactive` = '$Active', 
-        `photo` = '$filename' 
-        WHERE `prdmaster`.`id` = '$id';
-        ";
+        `photo` = '$filename',
+        `unit` = '$unit',
+        `telegram_group` = '$tele',
+        `changedon` = NOW(),
+        `changedby` = 'Admin'
+        WHERE `id` = '$id'";
+        
         if($con->query($sql)){
             //redirect to index.php
             $_SESSION['msg'] = "Update successfully";

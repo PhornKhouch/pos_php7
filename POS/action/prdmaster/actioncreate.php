@@ -17,7 +17,7 @@
             $Active='I';
         }
         $unit= $_POST['unit'];
-        
+        $tele= $_POST['TelegramID'];
         //upload photo
         $target_dir = "../../Upload/brand/";
         $filename=$_FILES['photo']['name'];
@@ -50,8 +50,8 @@
             header('Location:../../view/prdmaster/add.php');
             exit();
         }
-        $sql = "INSERT INTO `prdmaster` (`id`, `prdname`, `prdcategroy`, `prdbrand`, `stockqty`, `unitcose`, `stockdate`, `expdate`, `createby`, `createdon`, `changedby`, `changedon`, `photo`, `isactive`, `unit`) 
-        VALUES (NULL, '$description', '$category', '$brand', '$qty', '$unitcose', '$stdate', '$exdate', 'Admin', NOW(), '', NOW(), '$filename', '$Active', '$unit');";
+        $sql = "INSERT INTO `prdmaster` (`id`, `prdname`, `prdcategroy`, `prdbrand`, `stockqty`, `unitcose`, `stockdate`, `expdate`, `createby`, `createdon`, `changedby`, `changedon`, `photo`, `isactive`, `unit`, `telegram_group`) 
+        VALUES (NULL, '$description', '$category', '$brand', '$qty', '$unitcose', '$stdate', '$exdate', 'Admin', NOW(), '', NOW(), '$filename', '$Active', '$unit', '$tele');";
         try{
             if($con->query($sql)){
                 //redirect to index.php

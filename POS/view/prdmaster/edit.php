@@ -16,6 +16,7 @@ if(isset($_GET['id'])!=null){
     $unitcose = $row['unitcose'];
     $isactive = $row['isactive'];
     $unit = $row['unit'];
+    $TeleID=$row['telegram_group'];
     if($row['photo']!=null || $row['photo']!=''){
         $src="../../Upload/brand/".$row['photo'];
     }
@@ -101,6 +102,22 @@ if(isset($_GET['id'])!=null){
                     <div class="col-xl-6 " style="margin-top: 40px;">
                         <label for="">Active</label>
                         <input style="margin-left: 15px;" type="checkbox" name="isactive" class="form-check-input" <?php if($isactive=='A'){echo "checked";}?> > 
+                    </div>
+                    <div class="col-xl-6">
+                    <label for="">Telegram Alert</label>
+                        <select name="TelegramID" id="" class="form-select">
+                            <?php
+                                $tele="SELECT * FROM telegram";
+                                $result = $con->query($tele);
+                               
+                                while($row = $result->fetch_assoc()) {
+                                    ?>
+                                    <option value="<?php echo $row['groupid']; ?>" <?php if($TeleID==$row['groupid']){echo "selected";}?>><?php echo $row['groupid']; ?></option>
+                                    <?php
+                                }
+                               
+                            ?>
+                        </select>
                     </div>
                     <div class="col-xl-6">
                         <label for="">photo</label>

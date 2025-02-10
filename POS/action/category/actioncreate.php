@@ -10,11 +10,17 @@
         //save data to database
         $sql = "INSERT INTO `category` (`code`, `name`, `status`) VALUES ('$code', '$description', '$status')";
         if($con->query($sql)){
-            //redirect to index.php
-            $_SESSION['msg'] = "Save successfully";
+            //Set success message
+            $_SESSION['status'] = "success";
+            $_SESSION['message'] = "Category saved successfully!";
             header('Location:../../view/category/index.php');
+            exit();
         }else{
-            echo "Error: " . $sql . "<br>" . $con->error;
+            //Set error message
+            $_SESSION['status'] = "error";
+            $_SESSION['message'] = "Error saving category: " . $con->error;
+            header('Location:../../view/category/index.php');
+            exit();
         }
     }
 ?>

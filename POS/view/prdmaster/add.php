@@ -105,14 +105,14 @@ session_start();
                     </div>
                     <div class="col-xl-6">
                     <label for="">Telegram Alert</label>
-                        <select name="unit" id="" class="form-select">
+                        <select name="TelegramID" id="" class="form-select">
                             <?php
                                 $tele="SELECT * FROM telegram";
                                 $result = $con->query($tele);
                                
                                 while($row = $result->fetch_assoc()) {
                                     ?>
-                                    <option value="<?php echo $row['chatid']; ?>"><?php echo $row['chatid']; ?></option>
+                                    <option value="<?php echo $row['groupid']; ?>"><?php echo $row['groupid']; ?></option>
                                     <?php
                                 }
                                
